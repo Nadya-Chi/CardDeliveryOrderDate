@@ -4,14 +4,12 @@ package ru.netology;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.time.LocalDate;
 
 @Data
 @RequiredArgsConstructor
 
-public class RegistrationByCardInfo {
+public class OrderDeliveryCardInfo {
+    private final String city;
     private final String name;
-    private final String card;
-    private final LocalDate cardExpire;
-
+    private final String phone;
 }
