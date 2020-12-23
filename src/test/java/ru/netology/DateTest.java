@@ -29,9 +29,6 @@ public class DateTest {
         OrderDeliveryCardInfo user = DataGenerator.generateByUsers("ru");
         $("[data-test-id=city] input").setValue(user.getCity());
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        LocalDate localDate = LocalDate.now().plusDays(3);
-        String date = localDate.format(dateTimeFormatter);
         $("[data-test-id=date] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("[data-test-id=date] input").setValue(generateByDate(5));
 
@@ -40,5 +37,12 @@ public class DateTest {
         $("[data-test-id=agreement]").click();
         $("[class='button__text']").click();
         $("[data-test-id=success-notification]").waitUntil(Condition.visible, 15000).shouldHave(exactText("Успешно! Встреча успешно запланирована на " + generateByDate(5)));
+
+        $("[data-test-id=date] input").doubleClick().sendKeys(Keys.BACK_SPACE);
+        $("[data-test-id=date] input").setValue(generateByDate(4));
+        $("[class='button__text']").click();
+        $("[data-test-id=replan-notification]").waitUntil(Condition.visible, 15000).shouldHave(exactText("Необходимо подтверждение У вас уже запланирована встреча на другую дату. Перепланировать? Перепланировать"));
+        $("[data-test-id=replan-notification] [role=button]").click();
+        $("[data-test-id=success-notification]").waitUntil(Condition.visible, 15000).shouldHave(exactText("Успешно! Встреча успешно запланирована на " + generateByDate(4)));
     }
 }
