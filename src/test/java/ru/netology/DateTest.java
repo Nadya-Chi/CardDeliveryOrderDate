@@ -1,23 +1,17 @@
 package ru.netology;
 
 import com.codeborne.selenide.Condition;
-import com.github.javafaker.CreditCardType;
-import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-
 import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.DataGenerator.generateByDate;
 
 public class DateTest {
+
+    OrderDeliveryCardInfo user = DataGenerator.generateByUsers("ru");
 
     @BeforeEach
     void setUpAll() {
@@ -26,7 +20,6 @@ public class DateTest {
 
     @Test
     public void shouldSubmitRequest() {
-        OrderDeliveryCardInfo user = DataGenerator.generateByUsers("ru");
         $("[data-test-id=city] input").setValue(user.getCity());
 
         $("[data-test-id=date] input").doubleClick().sendKeys(Keys.BACK_SPACE);
@@ -48,7 +41,6 @@ public class DateTest {
 
     @Test
     public void shouldNotSubmitRequest() {
-        OrderDeliveryCardInfo user = DataGenerator.generateByUsers("ru");
         $("[data-test-id=city] input").setValue(user.getCity());
 
         $("[data-test-id=date] input").doubleClick().sendKeys(Keys.BACK_SPACE);

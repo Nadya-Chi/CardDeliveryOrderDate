@@ -2,7 +2,6 @@ package ru.netology;
 
 import com.github.javafaker.Faker;
 import lombok.Data;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -11,10 +10,6 @@ import java.util.*;
 public class DataGenerator {
     private DataGenerator() {}
 
-//    public static class OrderDeliveryCard {
-//        private OrderDeliveryCard() {}
-//    }
-
          public static OrderDeliveryCardInfo generateByUsers(String locale) {
             Faker faker = new Faker(new Locale("ru"));
             return new OrderDeliveryCardInfo(generateByCity(),
@@ -22,7 +17,6 @@ public class DataGenerator {
                     faker.phoneNumber().phoneNumber()
             );
     }
-
 
         public static String generateByCity() {
             List<String> cities = Arrays.asList("Астрахань","Кострома","Краснодар","Москва","Петропавловск-Камчатский","Ростов-на-Дону","Салехард","Самара","Санкт-Петербург","Саранск","Саратов","Севастополь","Ставрополь","Сыктывкар","Чебоксары","Элиста","Южно-Сахалинск","Ярославль");

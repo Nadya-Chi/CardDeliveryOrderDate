@@ -1,9 +1,7 @@
 package ru.netology;
 
-
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-
 
 @Data
 @RequiredArgsConstructor
