@@ -45,4 +45,19 @@ public class DateTest {
         $("[data-test-id=replan-notification] [role=button]").click();
         $("[data-test-id=success-notification]").waitUntil(Condition.visible, 15000).shouldHave(exactText("Успешно! Встреча успешно запланирована на " + generateByDate(4)));
     }
+
+    @Test
+    public void shouldNotSubmitRequest() {
+        OrderDeliveryCardInfo user = DataGenerator.generateByUsers("ru");
+        $("[data-test-id=city] input").setValue(user.getCity());
+
+        $("[data-test-id=date] input").doubleClick().sendKeys(Keys.BACK_SPACE);
+        $("[data-test-id=date] input").setValue(generateByDate(5));
+
+        $("[data-test-id=name] input").setValue(user.getName());
+        $("[data-test-id=phone] input").setValue("+7921000");
+        $("[data-test-id=agreement]").click();
+        $("[class='button__text']").click();
+        $("[data-test-id=phone] [class='input__sub']").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
+    }
 }
