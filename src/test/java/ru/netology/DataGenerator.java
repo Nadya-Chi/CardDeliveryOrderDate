@@ -11,8 +11,8 @@ import java.util.*;
 public class DataGenerator {
     private DataGenerator() {}
 
-//    public static class OrderDeliveryCardInfo {
-//        private OrderDeliveryCardInfo() {}
+//    public static class OrderDeliveryCard {
+//        private OrderDeliveryCard() {}
 //    }
 
          public static OrderDeliveryCardInfo generateByUsers(String locale) {

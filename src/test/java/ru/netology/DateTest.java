@@ -15,6 +15,7 @@ import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static ru.netology.DataGenerator.generateByDate;
 
 public class DateTest {
 
@@ -25,19 +26,19 @@ public class DateTest {
 
     @Test
     public void shouldSubmitRequest() {
-        $("[data-test-id=city] input").setValue("Са");
-        $(byText("Санкт-Петербург")).click();
+        OrderDeliveryCardInfo user = DataGenerator.generateByUsers("ru");
+        $("[data-test-id=city] input").setValue(user.getCity());
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         LocalDate localDate = LocalDate.now().plusDays(3);
         String date = localDate.format(dateTimeFormatter);
         $("[data-test-id=date] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("[data-test-id=date] input").setValue(date);
+        $("[data-test-id=date] input").setValue(generateByDate(5));
 
-        $("[data-test-id=name] input").setValue("Иванов Иван");
-        $("[data-test-id=phone] input").setValue("+79210000000");
+        $("[data-test-id=name] input").setValue(user.getName());
+        $("[data-test-id=phone] input").setValue(user.getPhone());
         $("[data-test-id=agreement]").click();
         $("[class='button__text']").click();
-        $("[data-test-id=notification]").waitUntil(Condition.visible, 15000).shouldHave(exactText("Успешно! Встреча успешно забронирована на " + date));
+        $("[data-test-id=success-notification]").waitUntil(Condition.visible, 15000).shouldHave(exactText("Успешно! Встреча успешно запланирована на " + generateByDate(5)));
     }
 }
