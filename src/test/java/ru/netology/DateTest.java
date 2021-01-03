@@ -29,14 +29,18 @@ public class DateTest {
         $("[data-test-id=phone] input").setValue(user.getPhone());
         $("[data-test-id=agreement]").click();
         $("[class='button__text']").click();
-        $("[data-test-id=success-notification]").waitUntil(Condition.visible, 15000).shouldHave(exactText("Успешно! Встреча успешно запланирована на " + generateByDate(5)));
+        $("[data-test-id=success-notification]").waitUntil(Condition.visible, 15000)
+                .shouldHave(exactText("Успешно! Встреча успешно запланирована на " + generateByDate(5)));
 
         $("[data-test-id=date] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("[data-test-id=date] input").setValue(generateByDate(4));
         $("[class='button__text']").click();
-        $("[data-test-id=replan-notification]").waitUntil(Condition.visible, 15000).shouldHave(exactText("Необходимо подтверждение У вас уже запланирована встреча на другую дату. Перепланировать? Перепланировать"));
+        $("[data-test-id=replan-notification]").waitUntil(Condition.visible, 15000)
+                .shouldHave(exactText("Необходимо подтверждение У вас уже запланирована встреча на другую дату." +
+                        " Перепланировать? Перепланировать"));
         $("[data-test-id=replan-notification] [role=button]").click();
-        $("[data-test-id=success-notification]").waitUntil(Condition.visible, 15000).shouldHave(exactText("Успешно! Встреча успешно запланирована на " + generateByDate(4)));
+        $("[data-test-id=success-notification]").waitUntil(Condition.visible, 15000)
+                .shouldHave(exactText("Успешно! Встреча успешно запланирована на " + generateByDate(4)));
     }
 
     @Test
@@ -50,6 +54,7 @@ public class DateTest {
         $("[data-test-id=phone] input").setValue("+7921000");
         $("[data-test-id=agreement]").click();
         $("[class='button__text']").click();
-        $("[data-test-id=phone] [class='input__sub']").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
+        $("[data-test-id=phone] [class='input__sub']")
+                .shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
     }
 }

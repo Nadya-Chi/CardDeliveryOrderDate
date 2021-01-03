@@ -1,12 +1,10 @@
 package ru.netology;
 
 import com.github.javafaker.Faker;
-import lombok.Data;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-@Data
 public class DataGenerator {
     private DataGenerator() {}
 
@@ -19,7 +17,7 @@ public class DataGenerator {
     }
 
         public static String generateByCity() {
-            List<String> cities = Arrays.asList("Астрахань","Кострома","Краснодар","Москва","Петропавловск-Камчатский","Ростов-на-Дону","Салехард","Самара","Санкт-Петербург","Саранск","Саратов","Севастополь","Ставрополь","Сыктывкар","Чебоксары","Элиста","Южно-Сахалинск","Ярославль");
+            List<String> cities = Arrays.asList("Астрахань","Кострома","Краснодар","Москва","Ростов-на-Дону","Самара");
             Random random = new Random();
             String city = cities.get(random.nextInt(cities.size()));
             return city;
