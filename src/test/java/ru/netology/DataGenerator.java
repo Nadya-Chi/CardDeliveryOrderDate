@@ -29,6 +29,11 @@ public class DataGenerator {
             return localDate.format(dateTimeFormatter);
         }
 
+    public static String generateByPhone() {
+        String phone = "+7921000000";
+        return phone;
+    }
+
 }
 
 

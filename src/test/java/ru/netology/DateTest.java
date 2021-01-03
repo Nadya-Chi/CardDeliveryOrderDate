@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.DataGenerator.generateByDate;
+import static ru.netology.DataGenerator.generateByPhone;
 
 public class DateTest {
 
@@ -51,7 +52,7 @@ public class DateTest {
         $("[data-test-id=date] input").setValue(generateByDate(5));
 
         $("[data-test-id=name] input").setValue(user.getName());
-        $("[data-test-id=phone] input").setValue("+7921000");
+        $("[data-test-id=phone] input").setValue(generateByPhone());
         $("[data-test-id=agreement]").click();
         $("[class='button__text']").click();
         $("[data-test-id=phone] [class='input__sub']")
